@@ -1,0 +1,19 @@
+{
+  "name": "who-s-that-pokemon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeomarLinhares/who-s-that-pokemon.git"
+  },
+  "author": "Vinicius e Leomar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeomarLinhares/who-s-that-pokemon/issues"
+  },
+  "homepage": "https://github.com/LeomarLinhares/who-s-that-pokemon#readme"
+}
