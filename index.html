@@ -1,21 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Who's that Pokemon</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
 </head>
 <body>
-  <img src="pokemon.png" alt="" id="pokemon-image">
-  <section id="alternatives-field">
-    <input type="radio" id="pokemon1" name="fav_language" value="pikachu">
-    <label for="pokemon1">pokemon</label><br>
-    <input type="radio" id="pokemon2" name="fav_language" value="squirdle">
-    <label for="pokemon2">pokemon</label><br>
-    <input type="radio" id="pokemon3" name="fav_language" value="meowth">
-    <label for="pokemon3">pokemon</label>
-  </section>
-  <button id="confirm">Confirm</button>
+  <div class="grid">
+    <img src="pokedex.png" alt="pokedex" class="pokedex">
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png" alt="pokemon" class="pokemon secret">
+
+  </div>
 </body>
 </html>

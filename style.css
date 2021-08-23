@@ -1,0 +1,27 @@
+.grid {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+  /* background-color: red; */
+  width: 80%px;
+  height: 660px;
+}
+
+.pokedex {
+  height: 100%;
+  grid-column: 2/5;
+  grid-row: 1/11;
+}
+
+.pokemon {
+  margin-top: 50px;
+  margin-left: 80px;
+  width: 180px;
+  grid-row: 3;
+  grid-column: 2;
+}
+
+.secret {
+  filter: contrast(0) brightness(0) drop-shadow(8px 8px 10px gray);
+}
+
