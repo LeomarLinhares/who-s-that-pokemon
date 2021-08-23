@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/LeomarLinhares/who-s-that-pokemon/issues"
   },
-  "homepage": "https://github.com/LeomarLinhares/who-s-that-pokemon#readme"
+  "homepage": "https://github.com/LeomarLinhares/who-s-that-pokemon#readme",
+  "devDependencies": {
+    "jest": "^27.0.6"
+  }
 }
