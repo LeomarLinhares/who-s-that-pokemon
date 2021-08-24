@@ -12,6 +12,14 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function shuffleArray(array) {
+  for (let index = array.length - 1; index > 0; index--) {
+    const indexOfOtherElement = Math.floor(Math.random() * (index + 1));
+    [array[index], array[indexOfOtherElement]] = [array[indexOfOtherElement], array[index]];
+  }
+  return array;
+}
+
 async function getRandomPokemon() {
   const number = randomNumber(1, 898);
   const pokemon = await getPokemonById(number);
