@@ -42,3 +42,10 @@ function createAlternative({ name, id }) {
   alternativesSection.appendChild(alternativeLabel);
 }
 
+function createPokemonObject(pokemonResponse) {
+  return {
+    id: pokemonResponse.id,
+    name: pokemonResponse.name,
+    sprite: pokemonResponse.sprites.other.dream_world.front_default,
+  }
+}
