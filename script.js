@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
 
 async function getPokemonById(id) {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
@@ -33,8 +33,7 @@ function createAlternative({ name, id }) {
 
   alternativeRadio.setAttribute('type', 'radio');
   alternativeRadio.setAttribute('name', 'alternative');
-  alternativeRadio.setAttribute('value', `${name}`);
-  alternativeRadio.setAttribute('id', `${id}`);
+  alternativeRadio.setAttribute('value', `${id}`);
   alternativeLabel.setAttribute('for', `${name}`);
   alternativeLabel.innerText = `${name}`;
 
@@ -48,4 +47,31 @@ function createPokemonObject(pokemonResponse) {
     name: pokemonResponse.name,
     sprite: pokemonResponse.sprites.other.dream_world.front_default,
   }
+}
+
+async function createQuestion() {
+  const rightAnswerResponse = await getRandomPokemon();
+  const rightAnswerObject = createPokemonObject(rightAnswerResponse);
+  const imageContainer = document.getElementById('image-container');
+  const image = document.createElement('img');
+  const alternatives = [];
+
+  alternatives.push(rightAnswerObject);
+  for (let index = 0; index < 5; index += 1) {
+    const newAlternative = await getRandomPokemon();
+    const notExist = !alternatives.filter((element) => element.id === newAlternative.id);
+    if (!notExist) {
+      alternatives.push(createPokemonObject(newAlternative));
+    } else {
+      index -= 1;
+    }
+  }
+
+  shuffleArray(alternatives);
+  alternatives.forEach((element) => createAlternative(element));
+
+  image.className = 'pokemonImage';
+  image.src = rightAnswerObject.sprite;
+  image.id = rightAnswerObject.id;
+  imageContainer.appendChild(image);
 }
