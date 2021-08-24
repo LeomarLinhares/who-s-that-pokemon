@@ -18,3 +18,19 @@ async function getRandomPokemon() {
   return pokemon;
 }
 
+function createAlternative({ name, id }) {
+  const alternativesSection = document.getElementById('alternatives-field');
+  const alternativeRadio = document.createElement('input');
+  const alternativeLabel = document.createElement('label');
+
+  alternativeRadio.setAttribute('type', 'radio');
+  alternativeRadio.setAttribute('name', 'alternative');
+  alternativeRadio.setAttribute('value', `${name}`);
+  alternativeRadio.setAttribute('id', `${id}`);
+  alternativeLabel.setAttribute('for', `${name}`);
+  alternativeLabel.innerText = `${name}`;
+
+  alternativesSection.appendChild(alternativeRadio);
+  alternativesSection.appendChild(alternativeLabel);
+}
+
