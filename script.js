@@ -42,10 +42,17 @@ function createAlternative({ name, id }) {
 }
 
 function createPokemonObject(pokemonResponse) {
+  let sprite = '';
+  if (pokemonResponse.sprites.other.dream_world.front_default) {
+    sprite = pokemonResponse.sprites.other.dream_world.front_default;
+  } else {
+    sprite = pokemonResponse.sprites.other['official-artwork'].front_default;
+  }
+
   return {
     id: pokemonResponse.id,
     name: pokemonResponse.name,
-    sprite: pokemonResponse.sprites.other.dream_world.front_default,
+    sprite,
   }
 }
 
