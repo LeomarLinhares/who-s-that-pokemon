@@ -75,3 +75,15 @@ async function createQuestion() {
   image.id = rightAnswerObject.id;
   imageContainer.appendChild(image);
 }
+
+window.onload = () => {
+  const confirmButton = document.getElementById('confirm');
+  confirmButton.addEventListener('click', () => {
+    const rightAnswer = document.querySelector('.pokemonImage');
+    const selectedRadio = document.querySelector('input[name="alternative"]:checked').value;
+
+    if (selectedRadio === rightAnswer.id) {
+      alert('Acertou');
+    }
+  })
+}
