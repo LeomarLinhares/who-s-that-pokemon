@@ -7,6 +7,51 @@
   height: 660px;
 }
 
+.pokebolaICO {
+  width: 90px;
+  grid-column: 2;
+  grid-row: 1;
+  z-index: 10;
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.led {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-left: 13px;
+  border-radius: 50%;
+  background-color: rgb(158, 158, 158);
+}
+
+.light {
+  width: 5px;
+  height: 5px;
+  background-color: white;
+  border-radius: 50%;
+  margin-top: 1px;
+  margin-left: 2px;
+}
+
+.leds{
+  grid-column: 2;
+  grid-row: 1;
+  z-index: 10;
+  margin-top: 20px;
+  margin-left: 120px;
+}
+
+.blink {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    background-color: green;
+  }
+}
+
 .pokedex {
   height: 100%;
   grid-column: 2/5;
