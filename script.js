@@ -1,4 +1,5 @@
 // const fetch = require('node-fetch');
+const pula = document.querySelector('.pula');
 
 async function getPokemonById(id) {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
@@ -21,9 +22,9 @@ function shuffleArray(array) {
 }
 
 async function getRandomPokemon() {
-  const number = randomNumber(1, 898);
-  const pokemon = await getPokemonById(number);
-  return pokemon;
+  const number = randomNumber(1, 151);
+  const response = await getPokemonById(number);
+  return response;
 }
 
 function createAlternative({ name, id }) {
@@ -56,16 +57,18 @@ function createPokemonObject(pokemonResponse) {
   }
 }
 
-async function createQuestion() {
+async function started() {
   const rightAnswerResponse = await getRandomPokemon();
   const rightAnswerObject = createPokemonObject(rightAnswerResponse);
-  const imageContainer = document.getElementById('image-container');
+  const imageContainer = document.querySelector('.grid');
   const image = document.createElement('img');
   const alternatives = [];
 
+  
   alternatives.push(rightAnswerObject);
+  
   for (let index = 0; index < 5; index += 1) {
-    const newAlternative = await getRandomPokemon();
+      const newAlternative = await getRandomPokemon();
     const notExist = !alternatives.filter((element) => element.id === newAlternative.id);
     if (!notExist) {
       alternatives.push(createPokemonObject(newAlternative));
@@ -73,24 +76,36 @@ async function createQuestion() {
       index -= 1;
     }
   }
-
+  
   shuffleArray(alternatives);
   alternatives.forEach((element) => createAlternative(element));
-
-  image.className = 'pokemonImage';
+  
+  image.className = 'pokemon secret';
   image.src = rightAnswerObject.sprite;
   image.id = rightAnswerObject.id;
   imageContainer.appendChild(image);
 }
 
-window.onload = () => {
-  const confirmButton = document.getElementById('confirm');
-  confirmButton.addEventListener('click', () => {
-    const rightAnswer = document.querySelector('.pokemonImage');
-    const selectedRadio = document.querySelector('input[name="alternative"]:checked').value;
+function reload() {
+  const imageContainer = document.querySelector('.grid');
+  const alternativesField = document.getElementById('alternatives-field');
+  imageContainer.removeChild(document.querySelector('.pokemon'));
+  alternativesField.innerHTML = '';
+  started();
+}
 
-    if (selectedRadio === rightAnswer.id) {
-      alert('Acertou');
-    }
-  })
+function confirm() {
+  const rightAnswer = document.querySelector('.pokemon');
+  const selectedRadio = document.querySelector('input[name="alternative"]:checked').value;
+
+  if (selectedRadio === rightAnswer.id) {
+    rightAnswer.classList.remove('secret');
+  }
+}
+
+window.onload = () => {
+  pula.addEventListener('click', reload);
+  const confirmButton = document.querySelector('.revelar');
+  confirmButton.addEventListener('click', confirm);
+  started();
 }

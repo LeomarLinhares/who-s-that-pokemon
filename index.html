@@ -1,17 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script defer src="script.js"></script>
   <title>Who's that Pokemon</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="pokebola.ico" type="image/x-icon">
+  <script defer src="script.js"></script>
 </head>
 <body>
-  <main id="question-box">
-    <div id="image-container"></div>
-    <section id="alternatives-field"></section>
-    <button id="confirm">Confirm</button>
-  </main>
+  <div class="grid">
+    <img src="pokebola.ico" alt="pokebola ico" class="pokebolaICO">
+
+    <div class="leds">
+      <div class="led one blink"> <div class="light"></div> </div>
+      <div class="led two"> <div class="light"></div> </div>
+      <div class="led three"> <div class="light"></div> </div>
+    </div>
+
+    <img src="pokedex.png" alt="pokedex" class="pokedex">
+
+    <!-- <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/54.png" alt="pokemon" class="pokemon secret"> -->
+
+    <div class="monitor"></div>
+
+    <div class="pulaDica">
+      <button class="pula">pular</button>
+      <button class="dica">dicas</button>
+    </div>
+
+    <div class="gridBTN setinhas">
+      <button class="seta um"></button>
+      <button class="seta dois"></button>
+      <button class="seta tres"></button> 
+      <button class="seta quatro"></button>
+    </div>
+    
+    <button class="revelar btn">revelar</button>
+
+    <form action="/action_page.php" class="radio" id="alternatives-field">
+    </form>
+
 </body>
 </html>
