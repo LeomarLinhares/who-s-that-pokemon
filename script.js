@@ -29,8 +29,11 @@ async function getRandomPokemon() {
 
 function createAlternative({ name, id }) {
   const alternativesSection = document.getElementById('alternatives-field');
+  const div = document.createElement('div')
   const alternativeRadio = document.createElement('input');
   const alternativeLabel = document.createElement('label');
+
+  div.classList.add('radioContainer')
 
   alternativeRadio.setAttribute('type', 'radio');
   alternativeRadio.setAttribute('name', 'alternative');
@@ -38,8 +41,10 @@ function createAlternative({ name, id }) {
   alternativeLabel.setAttribute('for', `${name}`);
   alternativeLabel.innerText = `${name}`;
 
-  alternativesSection.appendChild(alternativeRadio);
-  alternativesSection.appendChild(alternativeLabel);
+  div.appendChild(alternativeRadio);
+  div.appendChild(alternativeLabel);
+  alternativesSection.appendChild(div);
+
 }
 
 function createPokemonObject(pokemonResponse) {

@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
-  /* background-color: red; */
   width: 80%px;
   height: 660px;
 }
@@ -60,9 +59,10 @@
 }
 
 .pokemon {
-  margin-top: 53px;
-  margin-left: 70px;
-  width: 180px;
+  margin-top: 75px;
+  margin-left: 89px;
+  max-height: 130px;
+  max-width: 150px;
   grid-row: 3;
   grid-column: 2;
   z-index: 10;
@@ -83,7 +83,7 @@
 }
 
 .radio {
-  color: white;
+  color: rgb(173, 153, 153);
   grid-column: 2/9;
   grid-row: 4;
   margin-top: 20px;
@@ -92,8 +92,8 @@
 }
 
 .seta {
-  width: 45px;
-  height: 45px;
+  width: 46px;
+  height: 46px;
   border-radius: 4px;
 }
 
@@ -109,32 +109,38 @@
   grid-row: 8;
   grid-column: 2;
   z-index: 5;
-  margin-top: 18px;
-  margin-left: 270px;
+  margin-top: 40px;
+  margin-left: 280px;
+  height: 80px;
+  width: 80px;
 }
 
-.um {
+.cima {
   grid-row: 1;
   grid-column: 2;
-  box-shadow: 0px 2px 0px black;
+  box-shadow: 0px 4px 0px black;
+  clip-path: polygon(50% 100%, 100% 50%, 100% 0%, 0 0%, 0% 50%);
 }
 
-.dois {
+.esquerda {
   grid-row: 2;
   grid-column: 1;
   box-shadow: 0px 2px 0px black;
+  clip-path: polygon(50% 100%, 0% 100%, 0% 0%, 50% 0%, 100% 50%)
 }
 
-.tres {
+.direita {
   grid-row: 2;
   grid-column: 3;
   box-shadow: 0px 2px 0px black;
+  clip-path: polygon(50% 100%, 100% 100%, 100% 0%, 50% 0%, 0% 50%);
 }
 
-.quatro {
+.baixo {
   grid-row: 3;
   grid-column: 2;
   box-shadow: 0px 2px 0px black;
+  clip-path: polygon(50% 0%, 100% 50%, 100% 100%, 0 100%, 0% 50%);
 }
 
 .seta:active {
@@ -194,4 +200,8 @@
   background-color: rgb(100, 100, 100);
   box-shadow: none;
   transform: translateY(4px);
+}
+
+.radioContainer {
+  margin-top: 20px;
 }
