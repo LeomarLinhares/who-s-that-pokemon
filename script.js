@@ -2,6 +2,7 @@
 const pula = document.querySelector('.pula');
 const down = document.querySelector('.baixo');
 const up = document.querySelector('.cima');
+const clueButton = document.querySelector('.dica');
 
 async function getPokemonById(id) {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
@@ -38,7 +39,7 @@ function createAlternative({ name, id }) {
   label.classList.add('radioContainer')
   alternativeRadio.classList.add('nes-radio')
   alternativeRadio.classList.add('is-dark')
-  alternativeSpan.classList.add('testDica')
+  // alternativeSpan.classList.add('testDica')
 
   alternativeRadio.setAttribute('type', 'radio');
   alternativeRadio.setAttribute('name', 'answer');
@@ -49,7 +50,6 @@ function createAlternative({ name, id }) {
   label.appendChild(alternativeRadio);
   label.appendChild(alternativeSpan);
   alternativesSection.appendChild(label);
-
 }
 
 function createPokemonObject(pokemonResponse) {
@@ -124,20 +124,38 @@ function reload() {
   started();
 }
 
+function getClue() {
+  const rightAnswer = document.querySelector('.pokemon');
+  const allAlternatives = document.querySelectorAll('input[name="answer"]');
+  allAlternatives.forEach((element) => {
+    if (element.value === rightAnswer.id) {
+      const span = element.nextElementSibling;
+      span.classList.add('testDica');
+    }
+  });
+
+}
+
 function confirm() {
   const rightAnswer = document.querySelector('.pokemon');
   const selectedRadio = document.querySelector('input[name="answer"]:checked').value;
 
   if (selectedRadio === rightAnswer.id) {
     rightAnswer.classList.remove('secret');
+    alert('Acertou');
+    reload();
+  } else {
+    alert('Errou');
+    reload();
   }
 }
 
-window.onload = () => {
+window.onload = async () => {
   const confirmButton = document.querySelector('.revelar');
   pula.addEventListener('click', reload);
   down.addEventListener('click', keyDown);
   up.addEventListener('click', keyUp);
+  clueButton.addEventListener('click', getClue);
   confirmButton.addEventListener('click', confirm);
-  started();
+  await started();
 }
