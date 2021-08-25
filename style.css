@@ -1,8 +1,15 @@
+body {
+  font-family: 'Press Start 2P', cursive;
+}
+
+button {
+  border: none;
+}
+
 .grid {
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
-  width: 80%px;
   height: 660px;
 }
 
@@ -120,6 +127,7 @@
   grid-column: 2;
   box-shadow: 0px 4px 0px black;
   clip-path: polygon(50% 100%, 100% 50%, 100% 0%, 0 0%, 0% 50%);
+  z-index: 10;
 }
 
 .esquerda {
@@ -203,5 +211,11 @@
 }
 
 .radioContainer {
+  display:flex;
   margin-top: 20px;
+}
+
+.testDica {
+  background-color: #021d19;
+  width: 220px;
 }

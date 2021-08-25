@@ -31,21 +31,24 @@ async function getRandomPokemon() {
 
 function createAlternative({ name, id }) {
   const alternativesSection = document.getElementById('alternatives-field');
-  const div = document.createElement('div')
+  const label = document.createElement('label')
   const alternativeRadio = document.createElement('input');
-  const alternativeLabel = document.createElement('label');
+  const alternativeSpan = document.createElement('span');
 
-  div.classList.add('radioContainer')
+  label.classList.add('radioContainer')
+  alternativeRadio.classList.add('nes-radio')
+  alternativeRadio.classList.add('is-dark')
+  alternativeSpan.classList.add('testDica')
 
   alternativeRadio.setAttribute('type', 'radio');
-  alternativeRadio.setAttribute('name', 'alternative');
+  alternativeRadio.setAttribute('name', 'answer');
   alternativeRadio.setAttribute('value', `${id}`);
-  alternativeLabel.setAttribute('for', `${name}`);
-  alternativeLabel.innerText = `${name}`;
+  alternativeSpan.setAttribute('for', `${name}`);
+  alternativeSpan.innerText = `${name}`;
 
-  div.appendChild(alternativeRadio);
-  div.appendChild(alternativeLabel);
-  alternativesSection.appendChild(div);
+  label.appendChild(alternativeRadio);
+  label.appendChild(alternativeSpan);
+  alternativesSection.appendChild(label);
 
 }
 
@@ -65,13 +68,13 @@ function createPokemonObject(pokemonResponse) {
 }
 
 function keyDown() {
-  const selectedRadio = document.querySelector('input[name="alternative"]:checked');
+  const selectedRadio = document.querySelector('input[name="answer"]:checked');
   const father = selectedRadio.parentElement;
   father.nextSibling.firstElementChild.checked = true;
 }
 
 function keyUp() {
-  const selectedRadio = document.querySelector('input[name="alternative"]:checked');
+  const selectedRadio = document.querySelector('input[name="answer"]:checked');
   const father = selectedRadio.parentElement;
   father.previousSibling.firstElementChild.checked = true;
 }
@@ -123,7 +126,7 @@ function reload() {
 
 function confirm() {
   const rightAnswer = document.querySelector('.pokemon');
-  const selectedRadio = document.querySelector('input[name="alternative"]:checked').value;
+  const selectedRadio = document.querySelector('input[name="answer"]:checked').value;
 
   if (selectedRadio === rightAnswer.id) {
     rightAnswer.classList.remove('secret');
