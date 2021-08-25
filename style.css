@@ -32,16 +32,17 @@
   width: 320px;
   height: 320px;
   grid-row: 4;
-  grid-column: 4;
-  margin-left: -11px;
+  grid-column: 2;
+  margin-left: 540px;
   z-index: 0;
 }
 
 .radio {
   color: white;
-  margin-top: 20px;
+  grid-column: 2/9;
   grid-row: 4;
-  grid-column: 4;
+  margin-top: 20px;
+  margin-left: 560px;
   z-index: 5;
 }
 
@@ -61,10 +62,10 @@
 
 .setinhas {
   grid-row: 8;
-  grid-column: 3;
+  grid-column: 2;
   z-index: 5;
   margin-top: 18px;
-  margin-left: -13px;
+  margin-left: 270px;
 }
 
 .um {
@@ -98,11 +99,13 @@
 }
 
 .revelar {
-  margin-left: 15px;
+  margin-left: 557px;
   border-radius: 9px;
   grid-row: 9;
-  grid-column: 4;
+  grid-column: 2;
   z-index: 5;
+  height: 66px;
+  width: 275px;
   box-shadow: 0px 2px 0px black;
 }
 
@@ -147,4 +150,3 @@
   box-shadow: none;
   transform: translateY(4px);
 }
-
