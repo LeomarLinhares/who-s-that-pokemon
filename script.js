@@ -1,5 +1,7 @@
 // const fetch = require('node-fetch');
 const pula = document.querySelector('.pula');
+const down = document.querySelector('.baixo');
+const up = document.querySelector('.cima');
 
 async function getPokemonById(id) {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
@@ -62,6 +64,24 @@ function createPokemonObject(pokemonResponse) {
   }
 }
 
+function keyDown() {
+  const selectedRadio = document.querySelector('input[name="alternative"]:checked');
+  const father = selectedRadio.parentElement;
+  father.nextSibling.firstElementChild.checked = true;
+}
+
+function keyUp() {
+  const selectedRadio = document.querySelector('input[name="alternative"]:checked');
+  const father = selectedRadio.parentElement;
+  father.previousSibling.firstElementChild.checked = true;
+}
+
+function checkTheFirst() {
+  const alternativesField = document.getElementById('alternatives-field');
+  const alternativeContainer = alternativesField.firstElementChild;
+  alternativeContainer.firstChild.checked = true;
+}
+
 async function started() {
   const rightAnswerResponse = await getRandomPokemon();
   const rightAnswerObject = createPokemonObject(rightAnswerResponse);
@@ -89,6 +109,8 @@ async function started() {
   image.src = rightAnswerObject.sprite;
   image.id = rightAnswerObject.id;
   imageContainer.appendChild(image);
+
+  checkTheFirst();
 }
 
 function reload() {
@@ -109,8 +131,10 @@ function confirm() {
 }
 
 window.onload = () => {
-  pula.addEventListener('click', reload);
   const confirmButton = document.querySelector('.revelar');
+  pula.addEventListener('click', reload);
+  down.addEventListener('click', keyDown);
+  up.addEventListener('click', keyUp);
   confirmButton.addEventListener('click', confirm);
   started();
 }
