@@ -133,19 +133,21 @@ function reload() {
   started();
 }
 
+function findInputIndex(array, inputRadioElement) {
+  let elementIndex = -1;
+  array.forEach((element, index) => {
+    if (element.value === inputRadioElement.id) {
+      elementIndex = index; 
+    }
+  });
+  return elementIndex;
+}
+
 function getClue() {
   const rightAnswer = document.querySelector('.pokemon');
   const allAlternatives = document.querySelectorAll('input[name="answer"]');
-  const indexOfRightAnswer = () => {
-    let elementIndex = -1;
-    allAlternatives.forEach((element, index) => {
-      if (element.value === rightAnswer.id) {
-        elementIndex = index; 
-      }
-    });
-    return elementIndex;
-  };
-  const otherPossibilities = [randomNumberWithout(0, 5, indexOfRightAnswer()), randomNumberWithout(0, 5, indexOfRightAnswer())];
+  const indexOfRightAnswer = findInputIndex(allAlternatives, rightAnswer);
+  const otherPossibilities = [randomNumberWithout(0, 5, indexOfRightAnswer), randomNumberWithout(0, 5, indexOfRightAnswer)];
   allAlternatives.forEach((element, index) => {
     const span = element.nextElementSibling;
     if (element.value === rightAnswer.id) {
@@ -191,7 +193,6 @@ function confirm() {
     const acertou = document.querySelector('.result')
     acertou.innerText = 'ERROU'
     acertou.classList.add('errou')
-    getClue()
     zeraPlacar()
     setTimeout(() => {
       acertou.innerText = ''
