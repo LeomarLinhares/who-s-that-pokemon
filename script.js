@@ -1,8 +1,9 @@
 // const fetch = require('node-fetch');
-const pula = document.querySelector('.pula');
-const down = document.querySelector('.baixo');
-const up = document.querySelector('.cima');
+const jumpQuestion = document.querySelector('.pula');
+const arrowDown = document.querySelector('.baixo');
+const arrowUp = document.querySelector('.cima');
 const clueButton = document.querySelector('.dica');
+let contador = 0;
 
 async function getPokemonById(id) {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
@@ -45,8 +46,7 @@ function createAlternative({ name, id }) {
   const alternativeSpan = document.createElement('span');
 
   label.classList.add('radioContainer')
-  alternativeRadio.classList.add('nes-radio')
-  alternativeRadio.classList.add('is-dark')
+  alternativeRadio.className = 'nes-radio is-dark';
 
   alternativeRadio.setAttribute('type', 'radio');
   alternativeRadio.setAttribute('name', 'answer');
@@ -104,9 +104,8 @@ async function started() {
   
   for (let index = 0; index < 5; index += 1) {
     const newAlternative = await getRandomPokemon();
-    const notExist = !alternatives.filter((element) => element.id === newAlternative.id);
-    console.log(notExist)
-    if (!notExist) {
+    const forbiddenElement = alternatives.filter((element) => element.id === newAlternative.id);
+    if (!alternatives.includes(forbiddenElement)) {
       alternatives.push(createPokemonObject(newAlternative));
     } else {
       index -= 1;
@@ -158,8 +157,6 @@ function getClue() {
   clueButton.disabled = true;
 }
 
-let contador = 00
-
 function rightPokemon() {
   const rightAnswer = document.querySelector('.pokemon');
   const allAlternatives = document.querySelectorAll('input[name="answer"]');
@@ -184,7 +181,7 @@ function zeraPlacar() {
   placar.innerText = contador
 }
 
-function confirm() {
+function confirmChoice() {
   const rightAnswer = document.querySelector('.pokemon');
   const selectedRadio = document.querySelector('input[name="answer"]:checked').value;
 
@@ -198,7 +195,7 @@ function confirm() {
       acertou.innerText = ''
       acertou.classList.remove('acertou')
       reload()
-    },4000)
+    }, 4000);
   } else {
     rightAnswer.classList.remove('secret');
     const acertou = document.querySelector('.result')
@@ -210,16 +207,16 @@ function confirm() {
       acertou.innerText = ''
       acertou.classList.remove('errou')
       reload()
-    },4000)
+    }, 4000);
   }
 }
 
 window.onload = async () => {
   const confirmButton = document.querySelector('.revelar');
-  pula.addEventListener('click', reload);
-  down.addEventListener('click', keyDown);
-  up.addEventListener('click', keyUp);
+  jumpQuestion.addEventListener('click', reload);
+  arrowDown.addEventListener('click', keyDown);
+  arrowUp.addEventListener('click', keyUp);
   clueButton.addEventListener('click', getClue);
-  confirmButton.addEventListener('click', confirm);
+  confirmButton.addEventListener('click', confirmChoice);
   await started();
 }
