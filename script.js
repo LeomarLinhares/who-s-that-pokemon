@@ -16,6 +16,14 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function randomNumberWithout(min, max, forbiddenNumber) {
+  let number = randomNumber(min, max);
+  while (number === forbiddenNumber) {
+    number = randomNumber(min, max);
+  }
+  return number;
+}
+
 function shuffleArray(array) {
   for (let index = array.length - 1; index > 0; index--) {
     const indexOfOtherElement = Math.floor(Math.random() * (index + 1));
@@ -96,8 +104,9 @@ async function started() {
   alternatives.push(rightAnswerObject);
   
   for (let index = 0; index < 5; index += 1) {
-      const newAlternative = await getRandomPokemon();
+    const newAlternative = await getRandomPokemon();
     const notExist = !alternatives.filter((element) => element.id === newAlternative.id);
+    console.log(notExist)
     if (!notExist) {
       alternatives.push(createPokemonObject(newAlternative));
     } else {
@@ -127,13 +136,26 @@ function reload() {
 function getClue() {
   const rightAnswer = document.querySelector('.pokemon');
   const allAlternatives = document.querySelectorAll('input[name="answer"]');
-  allAlternatives.forEach((element) => {
+  const indexOfRightAnswer = () => {
+    let elementIndex = -1;
+    allAlternatives.forEach((element, index) => {
+      if (element.value === rightAnswer.id) {
+        elementIndex = index; 
+      }
+    });
+    return elementIndex;
+  };
+  const otherPossibilities = [randomNumberWithout(0, 5, indexOfRightAnswer()), randomNumberWithout(0, 5, indexOfRightAnswer())];
+  allAlternatives.forEach((element, index) => {
+    const span = element.nextElementSibling;
     if (element.value === rightAnswer.id) {
-      const span = element.nextElementSibling;
       span.classList.add('testDica');
+    } else if (index === otherPossibilities[0] || index === otherPossibilities[1]) {
+      span.classList.add('testDica');
+    } else {
+      span.style.textDecoration = 'line-through';
     }
   });
-
 }
 let contador = 00
 
