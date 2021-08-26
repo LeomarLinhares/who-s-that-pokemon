@@ -149,13 +149,10 @@ function getClue() {
   const indexOfRightAnswer = findInputIndex(allAlternatives, rightAnswer);
   const otherPossibilities = [randomNumberWithout(0, 5, indexOfRightAnswer), randomNumberWithout(0, 5, indexOfRightAnswer)];
   allAlternatives.forEach((element, index) => {
+    const canWeChange = index === otherPossibilities[0] || index === otherPossibilities[1];
     const span = element.nextElementSibling;
-    if (element.value === rightAnswer.id) {
+    if (element.value === rightAnswer.id || canWeChange) {
       span.classList.add('testDica');
-    } else if (index === otherPossibilities[0] || index === otherPossibilities[1]) {
-      span.classList.add('testDica');
-    } else {
-      // span.style.textDecoration = 'line-through';
     }
   });
   clueButton.disabled = true;
