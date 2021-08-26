@@ -18,12 +18,19 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
 }
 
-function randomNumberWithout(min, max, forbiddenNumber) {
-  let number = randomNumber(min, max);
-  while (number === forbiddenNumber) {
-    number = randomNumber(min, max);
+function arrayOfTwoRandomNumbersWithout(min, max, forbiddenNumber) {
+  const array = [];
+  let first = randomNumber(min, max);
+  let second = randomNumber(min, max);
+  let weCanNotCreate = first === second || first === forbiddenNumber || second === forbiddenNumber;
+  while (weCanNotCreate) {
+    first = randomNumber(min, max);
+    second = randomNumber(min, max);
+    weCanNotCreate = first === second || first === forbiddenNumber || second === forbiddenNumber;
   }
-  return number;
+  array.push(first);
+  array.push(second);
+  return array;
 }
 
 function shuffleArray(arr) {
@@ -147,10 +154,9 @@ function getClue() {
   const rightAnswer = document.querySelector('.pokemon');
   const allAlternatives = document.querySelectorAll('input[name="answer"]');
   const indexOfRightAnswer = findInputIndex(allAlternatives, rightAnswer);
-  const otherPossibilities = [
-    randomNumberWithout(0, 5, indexOfRightAnswer),
-    randomNumberWithout(0, 5, indexOfRightAnswer),
-  ];
+  console.log(indexOfRightAnswer)
+  const otherPossibilities = arrayOfTwoRandomNumbersWithout(0, 5, indexOfRightAnswer);
+  console.log(otherPossibilities);
 
   allAlternatives.forEach((element, index) => {
     const canWeChange = index === otherPossibilities[0] || index === otherPossibilities[1];
