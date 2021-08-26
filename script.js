@@ -4,11 +4,11 @@ const down = document.querySelector('.baixo');
 const up = document.querySelector('.cima');
 const clueButton = document.querySelector('.dica');
 
-// async function getPokemonById(id) {
-//   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
-//   const pokeObject = await response.json();
-//   return pokeObject;
-// }
+async function getPokemonById(id) {
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
+  const pokeObject = await response.json();
+  return pokeObject;
+}
 
 function randomNumber(min, max) {
   min = Math.ceil(min);
