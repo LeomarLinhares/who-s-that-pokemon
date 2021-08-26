@@ -380,3 +380,38 @@ button {
   background-color: #021d19;
   width: 220px;
 }
+
+.miniled {
+  height: 10px;
+  width: 10px;
+  background-color: rgb(160, 160, 160);
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+.ledsDois {
+  z-index: 10;
+  grid-column: 2;
+  grid-row: 3;
+  margin-top: 30px;
+  margin-left: 190px;
+}
+.minileds {
+  animation: led 2s linear infinite;
+}
+
+@keyframes led {
+  50% {
+    background-color: rgb(255, 0, 0);
+  }
+}
+
+.placar {
+  color: white;
+  grid-column: 2;
+  grid-row: 8;
+  z-index: 10;
+  margin-left: 798px;
+  margin-top: 23px;
+}

@@ -4,11 +4,11 @@ const down = document.querySelector('.baixo');
 const up = document.querySelector('.cima');
 const clueButton = document.querySelector('.dica');
 
-async function getPokemonById(id) {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
-  const pokeObject = await response.json();
-  return pokeObject;
-}
+// async function getPokemonById(id) {
+//   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
+//   const pokeObject = await response.json();
+//   return pokeObject;
+// }
 
 function randomNumber(min, max) {
   min = Math.ceil(min);
@@ -135,6 +135,19 @@ function getClue() {
   });
 
 }
+let contador = 00
+
+function placar() {
+  const placar = document.querySelector('.placar')
+  contador += 1
+  placar.innerText = contador
+}
+
+function zeraPlacar() {
+  const placar = document.querySelector('.placar')
+  contador = 0
+  placar.innerText = contador
+}
 
 function confirm() {
   const rightAnswer = document.querySelector('.pokemon');
@@ -145,6 +158,7 @@ function confirm() {
     const acertou = document.querySelector('.result')
     acertou.innerText = 'ACERTOU'
     acertou.classList.add('acertou')
+    placar()
     setTimeout(() => {
       acertou.innerText = ''
       acertou.classList.remove('acertou')
@@ -156,6 +170,7 @@ function confirm() {
     acertou.innerText = 'ERROU'
     acertou.classList.add('errou')
     getClue()
+    zeraPlacar()
     setTimeout(() => {
       acertou.innerText = ''
       acertou.classList.remove('errou')
