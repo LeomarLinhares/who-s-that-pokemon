@@ -173,14 +173,30 @@ function rightPokemon() {
   });
 }
 
-function score() {
+function rightAnswerEvent() {
   scoreCount += 1;
+  const acertou = document.querySelector('.result');
   scoreElement.innerText = scoreCount;
+  acertou.innerText = 'ACERTOU';
+  acertou.classList.add('acertou');
+  setTimeout(() => {
+    acertou.innerText = '';
+    acertou.classList.remove('acertou');
+    reload();
+  }, 4000);
 }
 
-function clearScore() {
+function wrongAnswerEvent() {
   scoreCount = 0;
+  const acertou = document.querySelector('.result');
   scoreElement.innerText = scoreCount;
+  acertou.innerText = 'ERROU';
+  acertou.classList.add('errou');
+  setTimeout(() => {
+    acertou.innerText = '';
+    acertou.classList.remove('errou');
+    reload();
+  }, 4000);
 }
 
 function confirmChoice() {
@@ -189,27 +205,11 @@ function confirmChoice() {
 
   if (selectedRadio === rightAnswer.id) {
     rightAnswer.classList.remove('secret');
-    const acertou = document.querySelector('.result');
-    acertou.innerText = 'ACERTOU';
-    acertou.classList.add('acertou');
-    score();
-    setTimeout(() => {
-      acertou.innerText = '';
-      acertou.classList.remove('acertou');
-      reload();
-    }, 4000);
+    rightAnswerEvent();
   } else {
     rightAnswer.classList.remove('secret');
-    const acertou = document.querySelector('.result');
-    acertou.innerText = 'ERROU';
-    acertou.classList.add('errou');
     rightPokemon();
-    clearScore();
-    setTimeout(() => {
-      acertou.innerText = '';
-      acertou.classList.remove('errou');
-      reload();
-    }, 4000);
+    wrongAnswerEvent();
   }
 }
 
