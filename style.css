@@ -479,3 +479,8 @@ button {
   clip-path: polygon(50% 0%, 100% 50%, 100% 100%, 0 100%, 0% 50%);
   background-color: #6b6872;
 }
+
+.rightPokemon {
+  background-color: #4bdd1a;
+  width: 220px;
+}

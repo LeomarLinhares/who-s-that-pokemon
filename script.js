@@ -47,7 +47,6 @@ function createAlternative({ name, id }) {
   label.classList.add('radioContainer')
   alternativeRadio.classList.add('nes-radio')
   alternativeRadio.classList.add('is-dark')
-  // alternativeSpan.classList.add('testDica')
 
   alternativeRadio.setAttribute('type', 'radio');
   alternativeRadio.setAttribute('name', 'answer');
@@ -156,12 +155,25 @@ function getClue() {
     } else if (index === otherPossibilities[0] || index === otherPossibilities[1]) {
       span.classList.add('testDica');
     } else {
-      span.style.textDecoration = 'line-through';
+      // span.style.textDecoration = 'line-through';
     }
   });
   clueButton.disabled = true;
 }
+
 let contador = 00
+
+function rightPokemon() {
+  const rightAnswer = document.querySelector('.pokemon');
+  const allAlternatives = document.querySelectorAll('input[name="answer"]');
+  allAlternatives.forEach((element) => {
+    if (element.value === rightAnswer.id) {
+      const span = element.nextElementSibling;
+      span.classList.add('rightPokemon');
+    }
+  });
+
+}
 
 function placar() {
   const placar = document.querySelector('.placar')
@@ -195,6 +207,7 @@ function confirm() {
     const acertou = document.querySelector('.result')
     acertou.innerText = 'ERROU'
     acertou.classList.add('errou')
+    rightPokemon()
     zeraPlacar()
     setTimeout(() => {
       acertou.innerText = ''
