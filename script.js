@@ -3,7 +3,8 @@ const jumpQuestion = document.querySelector('.pula');
 const arrowDown = document.querySelector('.baixo');
 const arrowUp = document.querySelector('.cima');
 const clueButton = document.querySelector('.dica');
-let contador = 0;
+const scoreElement = document.querySelector('.placar');
+let scoreCount = 0;
 
 async function getPokemonById(id) {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
@@ -12,9 +13,9 @@ async function getPokemonById(id) {
 }
 
 function randomNumber(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  const minValue = Math.ceil(min);
+  const maxValue = Math.floor(max);
+  return Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
 }
 
 function randomNumberWithout(min, max, forbiddenNumber) {
@@ -25,8 +26,9 @@ function randomNumberWithout(min, max, forbiddenNumber) {
   return number;
 }
 
-function shuffleArray(array) {
-  for (let index = array.length - 1; index > 0; index--) {
+function shuffleArray(arr) {
+  const array = arr;
+  for (let index = array.length - 1; index > 0; index -= 1) {
     const indexOfOtherElement = Math.floor(Math.random() * (index + 1));
     [array[index], array[indexOfOtherElement]] = [array[indexOfOtherElement], array[index]];
   }
@@ -41,11 +43,11 @@ async function getRandomPokemon() {
 
 function createAlternative({ name, id }) {
   const alternativesSection = document.getElementById('alternatives-field');
-  const label = document.createElement('label')
+  const label = document.createElement('label');
   const alternativeRadio = document.createElement('input');
   const alternativeSpan = document.createElement('span');
 
-  label.classList.add('radioContainer')
+  label.classList.add('radioContainer');
   alternativeRadio.className = 'nes-radio is-dark';
 
   alternativeRadio.setAttribute('type', 'radio');
@@ -71,7 +73,7 @@ function createPokemonObject(pokemonResponse) {
     id: pokemonResponse.id,
     name: pokemonResponse.name,
     sprite,
-  }
+  };
 }
 
 function keyDown() {
@@ -99,9 +101,8 @@ async function started() {
   const image = document.createElement('img');
   const alternatives = [];
 
-  
   alternatives.push(rightAnswerObject);
-  
+
   for (let index = 0; index < 5; index += 1) {
     const newAlternative = await getRandomPokemon();
     const forbiddenElement = alternatives.filter((element) => element.id === newAlternative.id);
@@ -111,10 +112,10 @@ async function started() {
       index -= 1;
     }
   }
-  
+
   shuffleArray(alternatives);
   alternatives.forEach((element) => createAlternative(element));
-  
+
   image.className = 'pokemon secret';
   image.src = rightAnswerObject.sprite;
   image.id = rightAnswerObject.id;
@@ -136,7 +137,7 @@ function findInputIndex(array, inputRadioElement) {
   let elementIndex = -1;
   array.forEach((element, index) => {
     if (element.value === inputRadioElement.id) {
-      elementIndex = index; 
+      elementIndex = index;
     }
   });
   return elementIndex;
@@ -146,7 +147,11 @@ function getClue() {
   const rightAnswer = document.querySelector('.pokemon');
   const allAlternatives = document.querySelectorAll('input[name="answer"]');
   const indexOfRightAnswer = findInputIndex(allAlternatives, rightAnswer);
-  const otherPossibilities = [randomNumberWithout(0, 5, indexOfRightAnswer), randomNumberWithout(0, 5, indexOfRightAnswer)];
+  const otherPossibilities = [
+    randomNumberWithout(0, 5, indexOfRightAnswer),
+    randomNumberWithout(0, 5, indexOfRightAnswer),
+  ];
+
   allAlternatives.forEach((element, index) => {
     const canWeChange = index === otherPossibilities[0] || index === otherPossibilities[1];
     const span = element.nextElementSibling;
@@ -166,19 +171,16 @@ function rightPokemon() {
       span.classList.add('rightPokemon');
     }
   });
-
 }
 
-function placar() {
-  const placar = document.querySelector('.placar')
-  contador += 1
-  placar.innerText = contador
+function score() {
+  scoreCount += 1;
+  scoreElement.innerText = scoreCount;
 }
 
-function zeraPlacar() {
-  const placar = document.querySelector('.placar')
-  contador = 0
-  placar.innerText = contador
+function clearScore() {
+  scoreCount = 0;
+  scoreElement.innerText = scoreCount;
 }
 
 function confirmChoice() {
@@ -187,26 +189,26 @@ function confirmChoice() {
 
   if (selectedRadio === rightAnswer.id) {
     rightAnswer.classList.remove('secret');
-    const acertou = document.querySelector('.result')
-    acertou.innerText = 'ACERTOU'
-    acertou.classList.add('acertou')
-    placar()
+    const acertou = document.querySelector('.result');
+    acertou.innerText = 'ACERTOU';
+    acertou.classList.add('acertou');
+    score();
     setTimeout(() => {
-      acertou.innerText = ''
-      acertou.classList.remove('acertou')
-      reload()
+      acertou.innerText = '';
+      acertou.classList.remove('acertou');
+      reload();
     }, 4000);
   } else {
     rightAnswer.classList.remove('secret');
-    const acertou = document.querySelector('.result')
-    acertou.innerText = 'ERROU'
-    acertou.classList.add('errou')
-    rightPokemon()
-    zeraPlacar()
+    const acertou = document.querySelector('.result');
+    acertou.innerText = 'ERROU';
+    acertou.classList.add('errou');
+    rightPokemon();
+    clearScore();
     setTimeout(() => {
-      acertou.innerText = ''
-      acertou.classList.remove('errou')
-      reload()
+      acertou.innerText = '';
+      acertou.classList.remove('errou');
+      reload();
     }, 4000);
   }
 }
@@ -219,4 +221,4 @@ window.onload = async () => {
   clueButton.addEventListener('click', getClue);
   confirmButton.addEventListener('click', confirmChoice);
   await started();
-}
+};
