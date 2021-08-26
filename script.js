@@ -158,6 +158,7 @@ function getClue() {
       span.style.textDecoration = 'line-through';
     }
   });
+  clueButton.disabled = true;
 }
 let contador = 00
 
