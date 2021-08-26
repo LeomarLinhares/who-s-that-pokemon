@@ -154,9 +154,7 @@ function getClue() {
   const rightAnswer = document.querySelector('.pokemon');
   const allAlternatives = document.querySelectorAll('input[name="answer"]');
   const indexOfRightAnswer = findInputIndex(allAlternatives, rightAnswer);
-  console.log(indexOfRightAnswer)
   const otherPossibilities = arrayOfTwoRandomNumbersWithout(0, 5, indexOfRightAnswer);
-  console.log(otherPossibilities);
 
   allAlternatives.forEach((element, index) => {
     const canWeChange = index === otherPossibilities[0] || index === otherPossibilities[1];
