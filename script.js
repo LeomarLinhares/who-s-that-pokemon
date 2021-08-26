@@ -142,11 +142,25 @@ function confirm() {
 
   if (selectedRadio === rightAnswer.id) {
     rightAnswer.classList.remove('secret');
-    alert('Acertou');
-    reload();
+    const acertou = document.querySelector('.result')
+    acertou.innerText = 'ACERTOU'
+    acertou.classList.add('acertou')
+    setTimeout(() => {
+      acertou.innerText = ''
+      acertou.classList.remove('acertou')
+      reload()
+    },4000)
   } else {
-    alert('Errou');
-    reload();
+    rightAnswer.classList.remove('secret');
+    const acertou = document.querySelector('.result')
+    acertou.innerText = 'ERROU'
+    acertou.classList.add('errou')
+    getClue()
+    setTimeout(() => {
+      acertou.innerText = ''
+      acertou.classList.remove('errou')
+      reload()
+    },4000)
   }
 }
 

@@ -89,6 +89,167 @@ button {
   z-index: 0;
 }
 
+.miniMonitor {
+  background-color: #003029;
+  width: 200px;
+  height: 52px;
+  grid-column: 2;
+  grid-row: 7;
+  margin-top: 3px;
+  margin-left: 171px;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+.errou {
+  animation: text-flicker 2s linear infinite;
+  text-align: center;
+  font-size: 23px;
+  grid-column: 2;
+  grid-row: 7;
+  z-index: 11;
+  margin-top: 10px;
+}
+
+.acertou {
+  animation: acertou-flicker 2s linear infinite;
+  text-align: center;
+  font-size: 23px;
+  grid-column: 2;
+  grid-row: 7;
+  z-index: 11;
+  margin-top: 10px;
+}
+
+
+@keyframes text-flicker {
+  0% {
+    opacity:0.1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+    color: red;
+  }
+  
+  2% {
+    opacity:1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+    color: red;
+  }
+  8% {
+    opacity:0.1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+    color: red;
+  }
+  9% {
+    opacity:1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+    color: red;
+  }
+  12% {
+    opacity:0.1;
+    text-shadow: 0px 0px rgba(242, 22, 22, 1);
+    color: red;
+  }
+  20% {
+    opacity:1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+    color: red;
+  }
+  25% {
+    opacity:0.3;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+  30% {
+    opacity:1;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+  
+  70% {
+    opacity:0.7;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+  
+  72% {
+    opacity:0.2;
+    text-shadow:0px 0px 29px rgba(242, 22, 22, 1);
+  }
+  
+  77% {
+    opacity:.9;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+  100% {
+    opacity:.9;
+    text-shadow: 0px 0px 29px rgba(242, 22, 22, 1);
+  }
+}
+
+@keyframes acertou-flicker {
+  0% {
+    opacity:0.1;
+    text-shadow: 0px 0px 29px rgb(66, 242, 22);
+    color: green;
+  }
+  
+  2% {
+    opacity:1;
+    text-shadow: 0px 0px 29px rgb(59, 242, 22);
+    color: green;
+  }
+  8% {
+    opacity:0.1;
+    text-shadow: 0px 0px 29px rgb(66, 242, 22);
+    color: green;
+  }
+  9% {
+    opacity:1;
+    text-shadow: 0px 0px 29px rgb(55, 242, 22);
+    color: green;
+  }
+  12% {
+    opacity:0.1;
+    text-shadow: 0px 0px rgb(66, 242, 22);
+    color: green;
+  }
+  20% {
+    opacity:1;
+    text-shadow: 0px 0px 29px rgb(59, 242, 22);
+    color: green;
+  }
+  25% {
+    opacity:0.3;
+    text-shadow: 0px 0px 29px rgb(59, 242, 22);
+    color: green;
+  }
+  30% {
+    opacity:1;
+    text-shadow: 0px 0px 29px rgb(66, 242, 22);
+    color: green;
+  }
+  
+  70% {
+    opacity:0.7;
+    text-shadow: 0px 0px 29px rgb(66, 242, 22);
+    color: green;
+  }
+  
+  72% {
+    opacity:0.2;
+    text-shadow:0px 0px 29px rgb(77, 242, 22);
+    color: green;
+  }
+  
+  77% {
+    opacity:.9;
+    text-shadow: 0px 0px 29px rgb(29, 242, 22);
+    color: green;
+  }
+  100% {
+    opacity:.9;
+    text-shadow: 0px 0px 29px rgb(40, 242, 22);
+    color: green;
+  }
+}
+
 .radio {
   color: rgb(173, 153, 153);
   grid-column: 2/9;
