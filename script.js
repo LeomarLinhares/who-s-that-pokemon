@@ -131,6 +131,7 @@ function reload() {
   imageContainer.removeChild(document.querySelector('.pokemon'));
   alternativesField.innerHTML = '';
   started();
+  clueButton.disabled = false;
 }
 
 function findInputIndex(array, inputRadioElement) {
