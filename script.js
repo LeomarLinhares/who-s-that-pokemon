@@ -5,7 +5,7 @@ const arrowDown = document.querySelector('.baixo');
 const arrowUp = document.querySelector('.cima');
 const clueButton = document.querySelector('.dica');
 const scoreElement = document.querySelector('.placar');
-let scoreCount = 4;
+let scoreCount = 0;
 
 async function getPokemonById(id) {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
