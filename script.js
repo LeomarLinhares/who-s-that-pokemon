@@ -1,10 +1,11 @@
 // const fetch = require('node-fetch');
+const confirmButton = document.querySelector('.revelar');
 const jumpQuestion = document.querySelector('.pula');
 const arrowDown = document.querySelector('.baixo');
 const arrowUp = document.querySelector('.cima');
 const clueButton = document.querySelector('.dica');
 const scoreElement = document.querySelector('.placar');
-let scoreCount = 0;
+let scoreCount = 4;
 
 async function getPokemonById(id) {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
@@ -156,6 +157,11 @@ function getClue() {
   const indexOfRightAnswer = findInputIndex(allAlternatives, rightAnswer);
   const otherPossibilities = arrayOfTwoRandomNumbersWithout(0, 5, indexOfRightAnswer);
 
+  if (scoreCount === 0) {
+    scoreCount = 0
+  }
+  scoreCount -= 1
+
   allAlternatives.forEach((element, index) => {
     const canWeChange = index === otherPossibilities[0] || index === otherPossibilities[1];
     const span = element.nextElementSibling;
@@ -178,7 +184,7 @@ function rightPokemon() {
 }
 
 function rightAnswerEvent() {
-  scoreCount += 1;
+  scoreCount += 2;
   const acertou = document.querySelector('.result');
   scoreElement.innerText = scoreCount;
   acertou.innerText = 'ACERTOU';
@@ -203,6 +209,17 @@ function wrongAnswerEvent() {
   }, 4000);
 }
 
+function lockbutton() {
+  confirmButton.disabled = true
+  jumpQuestion.disabled = true
+  clueButton.disabled = true;
+  setTimeout(() => {
+    confirmButton.disabled = false
+    jumpQuestion.disabled = false
+    clueButton.disabled = false;
+  },4000)
+}
+
 function confirmChoice() {
   const rightAnswer = document.querySelector('.pokemon');
   const selectedRadio = document.querySelector('input[name="answer"]:checked').value;
@@ -210,15 +227,16 @@ function confirmChoice() {
   if (selectedRadio === rightAnswer.id) {
     rightAnswer.classList.remove('secret');
     rightAnswerEvent();
+    lockbutton()
   } else {
     rightAnswer.classList.remove('secret');
     rightPokemon();
     wrongAnswerEvent();
+    lockbutton()
   }
 }
 
 window.onload = async () => {
-  const confirmButton = document.querySelector('.revelar');
   jumpQuestion.addEventListener('click', reload);
   arrowDown.addEventListener('click', keyDown);
   arrowUp.addEventListener('click', keyUp);
