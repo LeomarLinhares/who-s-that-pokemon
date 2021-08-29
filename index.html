@@ -6,72 +6,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script defer src="script.js"></script>
   <title>Who's that Pokemon</title>
-  <link rel="stylesheet" href="style.css">
   <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="pokebola.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <script defer src="script.js"></script>
 </head>
-<body class="nes-text">
-  <div class="grid">
-    
-    <img src="pokebola.ico" alt="pokebola ico" class="pokebolaICO">
+<body >
+  <div class="app nes-text">
+    <div class="grid">
 
-    <div class="leds">
-      <div class="led one blink"> <div class="light"></div> </div>
-      <div class="led two"> <div class="light"></div> </div>
-      <div class="led three"> <div class="light"></div> </div>
+      <img src="pokebola.ico" alt="pokebola ico" class="pokebolaICO">
+
+      <div class="leds">
+        <div class="led one blink"> <div class="light"></div> </div>
+        <div class="led two"> <div class="light"></div> </div>
+        <div class="led three"> <div class="light"></div> </div>
+      </div>
+  
+      <div class="ledsDois">
+        <div class="miniled"></div>
+        <div class="miniled minileds"></div>
+      </div>
+  
+      <img src="pokedex.png" alt="pokedex" class="pokedex">
+  
+      <div class="monitor"></div>
+      <div class="miniMonitor">
+        <p class="result"></p>
+      </div>
+  
+      <div class="pulaDica">
+        <button class="pula">pular</button>
+        <button class="dica">dicas</button>
+      </div>
+  
+      <div class="gridBTN setinhas">
+        <button class="seta cima"></button>
+        <button class="seta direita"></button>
+        <button class="seta esquerda"></button> 
+        <button class="seta baixo"></button>
+      </div>
+      
+      <div class="sombra">
+        <button class="seta cc"></button>
+        <button class="seta dd"></button>
+        <button class="seta ee"></button> 
+        <button class="seta bb"></button>
+      </div>
+  
+      <button class="revelar btn">revelar</button>
+  
+      <form action="/action_page.php" class="radio" id="alternatives-field">
+      </form>
+  
+      <div class="placar">
+        <p>0</p>
+      </div>
+  
+      <div class="autoFalante">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
     </div>
-
-    <div class="ledsDois">
-      <div class="miniled"></div>
-      <div class="miniled minileds"></div>
-    </div>
-
-    <img src="pokedex.png" alt="pokedex" class="pokedex">
-
-    <div class="monitor"></div>
-    <div class="miniMonitor">
-      <p class="result"></p>
-    </div>
-
-    <div class="pulaDica">
-      <button class="pula">pular</button>
-      <button class="dica">dicas</button>
-    </div>
-
-    <div class="gridBTN setinhas">
-      <button class="seta cima"></button>
-      <button class="seta direita"></button>
-      <button class="seta esquerda"></button> 
-      <button class="seta baixo"></button>
-    </div>
-    
-    <div class="sombra">
-      <button class="seta cc"></button>
-      <button class="seta dd"></button>
-      <button class="seta ee"></button> 
-      <button class="seta bb"></button>
-    </div>
-
-    <button class="revelar btn">revelar</button>
-
-    <form action="/action_page.php" class="radio" id="alternatives-field">
-    </form>
-
-    <div class="placar">
-      <p>00</p>
-    </div>
-
-    <div class="autoFalante">
-      <div class="line"></div>
-      <div class="line"></div>
-      <div class="line"></div>
-      <div class="line"></div>
-    </div>
-
   </div>
 </body>
 </html>

@@ -1,6 +1,5 @@
-// const fetch = require('node-fetch');
 const confirmButton = document.querySelector('.revelar');
-const jumpQuestion = document.querySelector('.pula');
+const skipQuestion = document.querySelector('.pula');
 const arrowDown = document.querySelector('.baixo');
 const arrowUp = document.querySelector('.cima');
 const clueButton = document.querySelector('.dica');
@@ -211,11 +210,11 @@ function wrongAnswerEvent() {
 
 function lockbutton() {
   confirmButton.disabled = true
-  jumpQuestion.disabled = true
+  skipQuestion.disabled = true
   clueButton.disabled = true;
   setTimeout(() => {
     confirmButton.disabled = false
-    jumpQuestion.disabled = false
+    skipQuestion.disabled = false
     clueButton.disabled = false;
   },4000)
 }
@@ -237,7 +236,7 @@ function confirmChoice() {
 }
 
 window.onload = async () => {
-  jumpQuestion.addEventListener('click', reload);
+  skipQuestion.addEventListener('click', reload);
   arrowDown.addEventListener('click', keyDown);
   arrowUp.addEventListener('click', keyUp);
   clueButton.addEventListener('click', getClue);
