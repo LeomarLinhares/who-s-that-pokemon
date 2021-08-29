@@ -76,10 +76,22 @@ function createAlternative({ name, id }) {
 
 function createPokemonObject(pokemonResponse) {
   let sprite = '';
-  if (pokemonResponse.sprites.other.dream_world.front_default) {
-    sprite = pokemonResponse.sprites.other.dream_world.front_default;
+  let dreamWorldIsDefined = '';
+  let officialArtWorkIsDefined = '';
+
+  try {
+    dreamWorldIsDefined = pokemonResponse.sprites.other.dream_world.front_default;
+    officialArtWorkIsDefined = pokemonResponse.sprites.other['official-artwork'].front_default;
+  } catch (error) {
+    console.table(error);
+  }
+
+  if (dreamWorldIsDefined) {
+    sprite = dreamWorldIsDefined;
+  } else if (officialArtWorkIsDefined) {
+    sprite = officialArtWorkIsDefined;
   } else {
-    sprite = pokemonResponse.sprites.other['official-artwork'].front_default;
+    sprite = pokemonResponse.sprite;
   }
 
   return {
@@ -134,8 +146,8 @@ function checkTheFirst() {
 
 async function started() {
   const rightAnswerResponse = await getRandomPokemon();
-  pushToLoadedPokemons(rightAnswerResponse);
   const rightAnswerObject = createPokemonObject(rightAnswerResponse);
+  pushToLoadedPokemons(rightAnswerObject);
   const imageContainer = document.querySelector('.grid');
   const image = document.createElement('img');
   const alternatives = [];
@@ -144,10 +156,11 @@ async function started() {
 
   for (let index = 0; index < 5; index += 1) {
     const newAlternative = await getRandomPokemon();
-    pushToLoadedPokemons(newAlternative);
     const forbiddenElement = alternatives.filter((element) => element.id === newAlternative.id);
     if (!alternatives.includes(forbiddenElement)) {
-      alternatives.push(createPokemonObject(newAlternative));
+      const alternative = createPokemonObject(newAlternative);
+      alternatives.push(alternative);
+      pushToLoadedPokemons(alternative);
     } else {
       index -= 1;
     }
