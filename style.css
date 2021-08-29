@@ -1,5 +1,6 @@
 body {
   font-family: 'Press Start 2P', cursive;
+  background-color: rgb(29, 5, 39);
 }
 
 .app {
@@ -11,11 +12,6 @@ body {
   height: 100vh;
 }
 
-button {
-  border: none;
-  background-color: #e4e2e2;
-}
-
 .grid {
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
@@ -24,7 +20,12 @@ button {
   max-width: 900px;
 }
 
-.pokebolaICO {
+button {
+  border: none;
+  background-color: #e4e2e2;
+}
+
+#pokeball {
   width: 90px;
   grid-column: 1;
   grid-row: 1;
@@ -42,7 +43,7 @@ button {
   background-color: rgb(158, 158, 158);
 }
 
-.light {
+.reflexion-shine {
   width: 5px;
   height: 5px;
   background-color: white;
@@ -51,13 +52,23 @@ button {
   margin-left: 2px;
 }
 
-.leds{
+#leds-container {
   width: 150px;
   grid-column: 1;
   grid-row: 1;
   z-index: 10;
   margin-top: 20px;
   margin-left: 120px;
+}
+
+.pokemonPanelLed {
+  height: 10px;
+  width: 10px;
+  margin-left: 8px;
+}
+
+.pokemonPanelLed:nth-child(2) {
+  animation: led 2s linear infinite;
 }
 
 .blink {
@@ -91,7 +102,7 @@ button {
   filter: contrast(0) brightness(0) drop-shadow(8px 8px 10px gray);
 }
 
-.monitor {
+#alternatives-panel {
   background-color: #003029;
   width: 320px;
   height: 320px;
@@ -101,7 +112,7 @@ button {
   z-index: 0;
 }
 
-.miniMonitor {
+#results-container {
   background-color: #003029;
   width: 200px;
   height: 52px;
@@ -113,7 +124,7 @@ button {
   z-index: 10;
 }
 
-.errou {
+.wrongAnswer {
   animation: text-flicker 2s linear infinite;
   text-align: center;
   font-size: 23px;
@@ -121,7 +132,7 @@ button {
   margin-top: 10px;
 }
 
-.acertou {
+.correctAnswer {
   animation: acertou-flicker 2s linear infinite;
   text-align: center;
   font-size: 23px;
@@ -258,7 +269,7 @@ button {
   }
 }
 
-.radio {
+#alternatives-field {
   color: rgb(173, 153, 153);
   grid-column: 1/5;
   grid-row: 4;
@@ -267,21 +278,18 @@ button {
   z-index: 5;
 }
 
-.seta {
+.arrow {
   width: 46px;
   height: 46px;
   border-radius: 4px;
 }
 
-.gridBTN {
+#arrow-box{
   display: grid;
   grid-template-columns: 33% 33% 33%;
   grid-template-rows: 33% 33% 33%;
   width: 140px;
   height: 140px;
-}
-
-.setinhas {
   grid-row: 8;
   grid-column: 1;
   z-index: 6;
@@ -291,7 +299,7 @@ button {
   width: 80px;
 }
 
-.cima {
+#arrow-up {
   grid-row: 1;
   grid-column: 2;
   box-shadow: 0px 4px 0px black;
@@ -299,21 +307,21 @@ button {
   z-index: 10;
 }
 
-.esquerda {
+#arrow-left {
   grid-row: 2;
   grid-column: 1;
   box-shadow: 0px 2px 0px black;
   clip-path: polygon(50% 100%, 0% 100%, 0% 0%, 50% 0%, 100% 50%)
 }
 
-.direita {
+#arrow-right {
   grid-row: 2;
   grid-column: 3;
   box-shadow: 0px 2px 0px black;
   clip-path: polygon(50% 100%, 100% 100%, 100% 0%, 50% 0%, 0% 50%);
 }
 
-.baixo {
+#arrow-down {
   grid-row: 3;
   grid-column: 2;
   box-shadow: 0px 2px 0px black;
@@ -326,7 +334,7 @@ button {
   transform: translateY(4px) translateX(-3px);
 }
 
-.revelar {
+#confirm {
   margin-left: 557px;
   border-radius: 9px;
   grid-row: 9;
@@ -337,13 +345,13 @@ button {
   box-shadow: -3px 4px 0px #6b6872;
 }
 
-.revelar:active {
+#confirm:active {
   background-color: rgb(100, 100, 100);
   box-shadow: none;
   transform: translateY(4px) translateX(-3px);
 }
 
-.pulaDica {
+#buttons-container {
   width: 180px;
   display: grid;
   grid-template-columns: 2;
@@ -354,26 +362,26 @@ button {
   margin-top: 40px;
 }
 
-.dica {
+#clue {
   height: 45px;
   margin-top: 10px;
   border-radius: 9px;
   box-shadow: -3px 4px 0px #6b6872;
 }
 
-.dica:active {
+#clue:active {
   background-color: rgb(100, 100, 100);
   box-shadow: none;
   transform: translateY(4px) translateX(-3px);
 }
 
-.pula {
+#skip {
   height: 45px;
   border-radius: 9px;
   box-shadow: -3px 4px 0px #6b6872;
 }
 
-.pula:active {
+#skip:active {
   background-color: rgb(100, 100, 100);
   box-shadow: none;
   transform: translateY(4px) translateX(-3px);
@@ -384,12 +392,21 @@ button {
   margin-top: 20px;
 }
 
-.testDica {
+.clueHighlight {
   background-color: #021d19;
   width: 220px;
 }
 
-.miniled {
+#pokemon-panel-leds-container {
+  z-index: 10;
+  grid-column: 1;
+  grid-row: 3;
+  margin-top: 30px;
+  margin-left: 190px;
+  width: 100px;
+}
+
+/* .miniled {
   height: 10px;
   width: 10px;
   background-color: rgb(160, 160, 160);
@@ -398,17 +415,9 @@ button {
   margin-left: 8px;
 }
 
-.ledsDois {
-  z-index: 10;
-  grid-column: 1;
-  grid-row: 3;
-  margin-top: 30px;
-  margin-left: 190px;
-  width: 100px;
-}
-.minileds {
+.miniled:nth-child(2){
   animation: led 2s linear infinite;
-}
+} */
 
 @keyframes led {
   50% {
@@ -416,7 +425,7 @@ button {
   }
 }
 
-.placar {
+#score {
   color: white;
   grid-column: 1;
   grid-row: 8;
@@ -425,7 +434,7 @@ button {
   margin-top: 23px;
 }
 
-.autoFalante {
+#speaker {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -437,7 +446,7 @@ button {
   margin-top: 8px;
 }
 
-.line {
+#speaker div {
   align-self: center;
   border-radius: 10px;
   width: 90%;
@@ -446,7 +455,7 @@ button {
   z-index: 10;
 }
 
-.sombra {
+#shadow-box {
   display: grid;
   grid-template-columns: 33% 33% 33%;
   grid-template-rows: 33% 33% 33%;
@@ -459,33 +468,33 @@ button {
   width: 80px;
 }
 
-.cc {
+#shadow-box .arrow {
+  background-color: #6b6872;
+}
+
+#arrow-up-shadow {
   grid-row: 1;
   grid-column: 2;
   clip-path: polygon(50% 100%, 100% 50%, 100% 0%, 0 0%, 0% 50%);
   z-index: 10;
-  background-color: #6b6872;
 }
 
-.ee {
+#arrow-left-shadow {
   grid-row: 2;
   grid-column: 1;
   clip-path: polygon(50% 100%, 0% 100%, 0% 0%, 50% 0%, 100% 50%);
-  background-color: #6b6872;
 }
 
-.dd {
+#arrow-right-shadow {
   grid-row: 2;
   grid-column: 3;
   clip-path: polygon(50% 100%, 100% 100%, 100% 0%, 50% 0%, 0% 50%);
-  background-color: #6b6872;
 }
 
-.bb {
+#arrow-down-shadow {
   grid-row: 3;
   grid-column: 2;
   clip-path: polygon(50% 0%, 100% 50%, 100% 100%, 0 100%, 0% 50%);
-  background-color: #6b6872;
 }
 
 .rightPokemon {
