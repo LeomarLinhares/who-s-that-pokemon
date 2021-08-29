@@ -92,6 +92,13 @@ async function saveToLocalStorage() {
   localStorage.setItem('wtp-local-highscores', stringfiedHighScores);
 }
 
+function pushToLoadedPokemons(object) {
+  const isLoaded = loadedPokemons.find((element) => element.id === object.id);
+  if (!isLoaded) {
+    loadedPokemons.push(object);
+  }
+}
+
 async function loadFromLocalStorage() {
   const parsedLoadedPokemons = await JSON.parse(localStorage.getItem('wtp-loaded-pokemons'));
   const parsedHighScores = await JSON.parse(localStorage.getItem('wtp-local-highscores'));
