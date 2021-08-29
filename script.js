@@ -1,10 +1,9 @@
-// const fetch = require('node-fetch');
-const confirmButton = document.querySelector('.revelar');
-const jumpQuestion = document.querySelector('.pula');
-const arrowDown = document.querySelector('.baixo');
-const arrowUp = document.querySelector('.cima');
-const clueButton = document.querySelector('.dica');
-const scoreElement = document.querySelector('.placar');
+const confirmButton = document.getElementById('confirm');
+const skipQuestion = document.getElementById('skip');
+const arrowDown = document.getElementById('arrow-down');
+const arrowUp = document.getElementById('arrow-up');
+const clueButton = document.getElementById('clue');
+const scoreElement = document.getElementById('score');
 let scoreCount = 0;
 
 async function getPokemonById(id) {
@@ -166,7 +165,7 @@ function getClue() {
     const canWeChange = index === otherPossibilities[0] || index === otherPossibilities[1];
     const span = element.nextElementSibling;
     if (element.value === rightAnswer.id || canWeChange) {
-      span.classList.add('testDica');
+      span.classList.add('clueHighlight');
     }
   });
   clueButton.disabled = true;
@@ -185,37 +184,37 @@ function rightPokemon() {
 
 function rightAnswerEvent() {
   scoreCount += 2;
-  const acertou = document.querySelector('.result');
+  const acertou = document.getElementById('result');
   scoreElement.innerText = scoreCount;
   acertou.innerText = 'ACERTOU';
-  acertou.classList.add('acertou');
+  acertou.classList.add('correctAnswer');
   setTimeout(() => {
     acertou.innerText = '';
-    acertou.classList.remove('acertou');
+    acertou.classList.remove('correctAnswer');
     reload();
   }, 4000);
 }
 
 function wrongAnswerEvent() {
   scoreCount = 0;
-  const acertou = document.querySelector('.result');
+  const acertou = document.getElementById('result');
   scoreElement.innerText = scoreCount;
   acertou.innerText = 'ERROU';
-  acertou.classList.add('errou');
+  acertou.classList.add('wrongAnswer');
   setTimeout(() => {
     acertou.innerText = '';
-    acertou.classList.remove('errou');
+    acertou.classList.remove('wrongAnswer');
     reload();
   }, 4000);
 }
 
-function lockbutton() {
+function lockButton() {
   confirmButton.disabled = true
-  jumpQuestion.disabled = true
+  skipQuestion.disabled = true
   clueButton.disabled = true;
   setTimeout(() => {
     confirmButton.disabled = false
-    jumpQuestion.disabled = false
+    skipQuestion.disabled = false
     clueButton.disabled = false;
   },4000)
 }
@@ -227,17 +226,17 @@ function confirmChoice() {
   if (selectedRadio === rightAnswer.id) {
     rightAnswer.classList.remove('secret');
     rightAnswerEvent();
-    lockbutton()
+    lockButton()
   } else {
     rightAnswer.classList.remove('secret');
     rightPokemon();
     wrongAnswerEvent();
-    lockbutton()
+    lockButton()
   }
 }
 
 window.onload = async () => {
-  jumpQuestion.addEventListener('click', reload);
+  skipQuestion.addEventListener('click', reload);
   arrowDown.addEventListener('click', keyDown);
   arrowUp.addEventListener('click', keyUp);
   clueButton.addEventListener('click', getClue);
