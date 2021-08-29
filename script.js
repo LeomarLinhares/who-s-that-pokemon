@@ -157,9 +157,9 @@ function getClue() {
   const otherPossibilities = arrayOfTwoRandomNumbersWithout(0, 5, indexOfRightAnswer);
 
   if (scoreCount === 0) {
-    scoreCount = 0
+    scoreCount = 0;
   }
-  scoreCount -= 1
+  scoreCount -= 1;
 
   allAlternatives.forEach((element, index) => {
     const canWeChange = index === otherPossibilities[0] || index === otherPossibilities[1];
@@ -209,14 +209,14 @@ function wrongAnswerEvent() {
 }
 
 function lockButton() {
-  confirmButton.disabled = true
-  skipQuestion.disabled = true
+  confirmButton.disabled = true;
+  skipQuestion.disabled = true;
   clueButton.disabled = true;
   setTimeout(() => {
-    confirmButton.disabled = false
-    skipQuestion.disabled = false
+    confirmButton.disabled = false;
+    skipQuestion.disabled = false;
     clueButton.disabled = false;
-  },4000)
+  }, 4000);
 }
 
 function confirmChoice() {
@@ -226,12 +226,12 @@ function confirmChoice() {
   if (selectedRadio === rightAnswer.id) {
     rightAnswer.classList.remove('secret');
     rightAnswerEvent();
-    lockButton()
+    lockButton();
   } else {
     rightAnswer.classList.remove('secret');
     rightPokemon();
     wrongAnswerEvent();
-    lockButton()
+    lockButton();
   }
 }
 
