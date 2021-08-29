@@ -5,6 +5,8 @@ const arrowUp = document.getElementById('arrow-up');
 const clueButton = document.getElementById('clue');
 const scoreElement = document.getElementById('score');
 let scoreCount = 0;
+let loadedPokemons = [];
+let highScores = [];
 
 async function getPokemonById(id) {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
@@ -81,6 +83,20 @@ function createPokemonObject(pokemonResponse) {
     name: pokemonResponse.name,
     sprite,
   };
+}
+
+async function saveToLocalStorage() {
+  const stringfiedLoadedPokemons = await JSON.stringify(loadedPokemons);
+  const stringfiedHighScores = await JSON.stringify(highScores);
+  localStorage.setItem('wtp-loaded-pokemons', stringfiedLoadedPokemons);
+  localStorage.setItem('wtp-local-highscores', stringfiedHighScores);
+}
+
+async function loadFromLocalStorage() {
+  const parsedLoadedPokemons = await JSON.parse(localStorage.getItem('wtp-loaded-pokemons'));
+  const parsedHighScores = await JSON.parse(localStorage.getItem('wtp-local-highscores'));
+  loadedPokemons = parsedLoadedPokemons;
+  highScores = parsedHighScores;
 }
 
 function keyDown() {
