@@ -279,3 +279,22 @@ window.onload = async () => {
   await loadFromLocalStorage();
   await started();
 };
+
+window.addEventListener('keydown', (event) => {
+  switch (event.keyCode) {
+    case 38:
+      keyUp();
+      break;
+
+    case 40:
+      keyDown();
+      break;
+
+    case 13:
+      confirmChoice();
+      break;
+
+    default:
+      break;
+  }
+})
