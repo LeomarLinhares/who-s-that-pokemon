@@ -89,7 +89,7 @@ function createPokemonObject(pokemonResponse) {
   };
 }
 
-async function saveToLocalStorage() {
+async function saveOnLocalStorage() {
   const stringfiedLoadedPokemons = await JSON.stringify(loadedPokemons);
   const stringfiedHighScores = await JSON.stringify(highScores);
   localStorage.setItem('wtp-loaded-pokemons', stringfiedLoadedPokemons);
@@ -104,10 +104,14 @@ function pushToLoadedPokemons(object) {
 }
 
 async function loadFromLocalStorage() {
-  const parsedLoadedPokemons = await JSON.parse(localStorage.getItem('wtp-loaded-pokemons'));
-  const parsedHighScores = await JSON.parse(localStorage.getItem('wtp-local-highscores'));
-  loadedPokemons = parsedLoadedPokemons;
-  highScores = parsedHighScores;
+  const stringfiedLoadedPokemons = await localStorage.getItem('wtp-loaded-pokemons');
+  const stringfiedHighScores = await localStorage.getItem('wtp-local-highscores');
+  const parsedLoadedPokemons = await JSON.parse(stringfiedLoadedPokemons);
+  const parsedHighScores = await JSON.parse(stringfiedHighScores);
+  if (stringfiedLoadedPokemons && stringfiedHighScores) {
+    loadedPokemons = parsedLoadedPokemons;
+    highScores = parsedHighScores;
+  }
 }
 
 function keyDown() {
@@ -130,6 +134,7 @@ function checkTheFirst() {
 
 async function started() {
   const rightAnswerResponse = await getRandomPokemon();
+  pushToLoadedPokemons(rightAnswerResponse);
   const rightAnswerObject = createPokemonObject(rightAnswerResponse);
   const imageContainer = document.querySelector('.grid');
   const image = document.createElement('img');
@@ -139,6 +144,7 @@ async function started() {
 
   for (let index = 0; index < 5; index += 1) {
     const newAlternative = await getRandomPokemon();
+    pushToLoadedPokemons(newAlternative);
     const forbiddenElement = alternatives.filter((element) => element.id === newAlternative.id);
     if (!alternatives.includes(forbiddenElement)) {
       alternatives.push(createPokemonObject(newAlternative));
@@ -146,6 +152,8 @@ async function started() {
       index -= 1;
     }
   }
+
+  await saveOnLocalStorage();
 
   shuffleArray(alternatives);
   alternatives.forEach((element) => createAlternative(element));
@@ -268,5 +276,6 @@ window.onload = async () => {
   arrowUp.addEventListener('click', keyUp);
   clueButton.addEventListener('click', getClue);
   confirmButton.addEventListener('click', confirmChoice);
+  await loadFromLocalStorage();
   await started();
 };
