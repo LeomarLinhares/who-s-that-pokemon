@@ -390,6 +390,7 @@ button {
 .radioContainer {
   display:flex;
   margin-top: 20px;
+  width: 260px;
 }
 
 .clueHighlight {
