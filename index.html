@@ -14,64 +14,62 @@
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <script defer src="script.js"></script>
 </head>
-<body >
+<body class="color-change-2x">
   <div class="app nes-text">
     <div class="grid">
+      <img src="pokebola.ico" alt="Pokeball icon" id="pokeball">
 
-      <img src="pokebola.ico" alt="pokebola ico" class="pokebolaICO">
-
-      <div class="leds">
-        <div class="led one blink"> <div class="light"></div> </div>
-        <div class="led two"> <div class="light"></div> </div>
-        <div class="led three"> <div class="light"></div> </div>
+      <div id="leds-container">
+        <div class="led blink"><div class="reflexion-shine"></div></div>
+        <div class="led"><div class="reflexion-shine"></div></div>
+        <div class="led"><div class="reflexion-shine"></div></div>
       </div>
   
-      <div class="ledsDois">
-        <div class="miniled"></div>
-        <div class="miniled minileds"></div>
+      <div id="pokemon-panel-leds-container">
+        <div class="led pokemonPanelLed"></div>
+        <div class="led pokemonPanelLed"></div>
       </div>
   
       <img src="pokedex.png" alt="pokedex" class="pokedex">
   
-      <div class="monitor"></div>
-      <div class="miniMonitor">
-        <p class="result"></p>
+      
+      <div id="results-container">
+        <p id="result"></p>
       </div>
   
-      <div class="pulaDica">
-        <button class="pula">pular</button>
-        <button class="dica">dicas</button>
+      <div id="buttons-container">
+        <button id="skip">pular</button>
+        <button id="clue">dicas</button>
       </div>
   
-      <div class="gridBTN setinhas">
-        <button class="seta cima"></button>
-        <button class="seta direita"></button>
-        <button class="seta esquerda"></button> 
-        <button class="seta baixo"></button>
+      <div id="arrow-box">
+        <button class="arrow" id="arrow-up"></button>
+        <button class="arrow" id="arrow-left"></button>
+        <button class="arrow" id="arrow-right"></button> 
+        <button class="arrow" id="arrow-down"></button>
       </div>
       
-      <div class="sombra">
-        <button class="seta cc"></button>
-        <button class="seta dd"></button>
-        <button class="seta ee"></button> 
-        <button class="seta bb"></button>
+      <div id="shadow-box">
+        <button class="arrow" id="arrow-up-shadow"></button>
+        <button class="arrow" id="arrow-left-shadow"></button>
+        <button class="arrow" id="arrow-right-shadow"></button> 
+        <button class="arrow" id="arrow-down-shadow"></button>
       </div>
+      
+      <button id="confirm">revelar</button>
+      
+      <div id="alternatives-panel"></div>
+      <section class="radio" id="alternatives-field"></section>
   
-      <button class="revelar btn">revelar</button>
+      <div id="score">0</div>
   
-      <form action="/action_page.php" class="radio" id="alternatives-field">
-      </form>
-  
-      <div class="placar">
-        <p>0</p>
+      <div id="speaker">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
-  
-      <div class="autoFalante">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-      </div>
+      
     </div>
   </div>
 </body>
