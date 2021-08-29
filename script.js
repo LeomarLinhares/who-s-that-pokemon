@@ -46,6 +46,10 @@ function shuffleArray(arr) {
 
 async function getRandomPokemon() {
   const number = randomNumber(1, 151);
+  const isLoaded = loadedPokemons.find((element) => element.id === number);
+  if (isLoaded) {
+    return isLoaded;
+  }
   const response = await getPokemonById(number);
   return response;
 }
